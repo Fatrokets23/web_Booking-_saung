@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Booking Saung | Al-Umanaa</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="images/logoalumanaa.jpeg" alt="Logo Al-Umanaa">
+
+            <div>
+                <h3>Al-Umanaa</h3>
+                <span>Admin Booking</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">MENU UTAMA</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#dashboard" class="nav-item active">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#booking" class="nav-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Data Booking</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Kembali ke Website</span>
+            </a>
+
+            <div class="admin-profile">
+                <div class="profile-icon">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Panel Pengelola</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Buka menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h2>Dashboard Admin</h2>
+                    <p>Pengelolaan Booking Saung Penjengukan</p>
+                </div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistem Booking
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section class="page-section" id="dashboard">
+
+            <div class="welcome-section">
+                <div>
+                    <span class="welcome-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Panel Administrator
+                    </span>
+
+                    <h1>Selamat Datang, Admin!</h1>
+
+                    <p>
+                        Kelola pengajuan kunjungan dan konfirmasi
+                        booking saung dengan mudah.
+                    </p>
+                </div>
+
+                <div class="welcome-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+            </div>
+
+
+            <!-- STATISTIK -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon total-icon">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Total Booking</span>
+                        <h3 id="totalBooking">0</h3>
+                        <small>Seluruh pengajuan</small>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon pending-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Menunggu Konfirmasi</span>
+                        <h3 id="pendingBooking">0</h3>
+                        <small>Perlu diperiksa</small>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon confirmed-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Dikonfirmasi</span>
+                        <h3 id="confirmedBooking">0</h3>
+                        <small>Booking disetujui</small>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon cancelled-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Dibatalkan</span>
+                        <h3 id="cancelledBooking">0</h3>
+                        <small>Booking tidak aktif</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- DAFTAR BOOKING -->
+            <section class="booking-section" id="booking">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Daftar Booking Saung</h2>
+
+                        <p>
+                            Periksa data pengajuan sebelum menyetujui
+                            kunjungan.
+                        </p>
+                    </div>
+
+                    <button class="btn-refresh" id="refreshBtn">
+                        <i class="fa-solid fa-rotate"></i>
+                        Muat Ulang
+                    </button>
+
+                </div>
+
+
+                <!-- FILTER -->
+                <div class="filter-toolbar">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="searchBooking"
+                            placeholder="Cari nama orang tua atau santri..."
+                        >
+                    </div>
+
+                    <select id="filterStatus">
+                        <option value="Semua">Semua Status</option>
+                        <option value="Menunggu Konfirmasi">
+                            Menunggu Konfirmasi
+                        </option>
+                        <option value="Confirmed">
+                            Dikonfirmasi
+                        </option>
+                        <option value="Dibatalkan">
+                            Dibatalkan
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <!-- TABEL -->
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Orang Tua / Wali</th>
+                                <th>Nama Santri</th>
+                                <th>Saung</th>
+                                <th>Jadwal Kunjungan</th>
+                                <th>No. WhatsApp</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="adminTableBody">
+
+                            <tr>
+                                <td colspan="8" class="table-message">
+                                    <i class="fa-solid fa-spinner fa-spin"></i>
+                                    Memuat data booking...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="table-footer">
+                    <span id="tableInfo">Menampilkan data booking</span>
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="admin-footer">
+            <p>
+                &copy; 2026 Pesantren Al-Umanaa Sukabumi.
+                Panel Administrasi Booking Saung.
+            </p>
+        </footer>
+
+    </main>
+
+
+    <script src="admin.js"></script>
+
+</body>
+</html>
